@@ -1,0 +1,338 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+:root {
+  --bg-color-trans: rgba(45, 52, 57, 0.8);
+  --bg-color: rgba(45, 52, 57, 1);
+
+  --bg-light: #aaa;
+  --text-clor: #ececec;
+  --fcolor: #ff456d;
+  --ocolor: #00c46a;
+}
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+}
+#showListBar {
+  height: 100%;
+  background-color: var(--bg-color);
+  width: 50px;
+  display: flex;
+  color: var(--text-clor);
+  font-size: 2rem;
+  justify-content: center;
+  align-content: flex-start;
+  flex-wrap: wrap-reverse;
+}
+#showListBar i {
+  margin-bottom: 15px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 5px;
+}
+#showListBar i:first-of-type:hover {
+  background-color: var(--ocolor);
+}
+#showListBar i:last-of-type:hover {
+  background-color: var(--fcolor);
+}
+.form-container {
+  width: 70%;
+  background-color: var(--bg-color-trans);
+  color: var(--text-clor);
+  border-radius: 0px 0px 5px 5px;
+  padding: 15px;
+  position: fixed;
+  left: 50%;
+  top: 0;
+  margin: auto;
+  transform: translateX(-50%);
+  z-index: 2;
+  opacity: 1;
+  transition: all 0.5s linear;
+}
+#closeBtn,
+#closeListBtn,
+#closeEditBtn {
+  color: var(--text-clor);
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 3px;
+  border: 0;
+  position: absolute;
+  right: 5px;
+  top: 3px;
+  cursor: pointer;
+}
+
+.hidden {
+  opacity: 0.5;
+  top: -260px;
+}
+.form-container > form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.input-col {
+  display: inline-flex;
+  width: 28%;
+  padding: 5px;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.form-container input,
+.form-container select {
+  width: 100%;
+  background-color: var(--bg-light);
+  border: 1px solid var(--bg-light);
+  height: 26px;
+  font-size: 15px;
+  padding: 0 5px;
+}
+.form-container input:focus,
+select:focus {
+  background-color: var(--text-clor);
+  outline: 0;
+}
+.form-container label {
+  max-width: 300px;
+  min-width: 120px;
+}
+
+.type-box-hidden {
+  display: none !important;
+}
+#side {
+  position: relative;
+  background-color: #2d3439;
+  height: 100%;
+  width: 15%;
+  min-width: 250px;
+  padding: 10px 20px 10px 5px;
+  border-radius: 5px 0 0 5px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: all 0.5s linear;
+}
+.side-hidden {
+  opacity: 0.2;
+  width: 0px !important;
+  min-width: 0% !important;
+  overflow: hidden !important;
+  padding: 0px !important;
+}
+
+.facility-col {
+  background-color: #aaa;
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+}
+
+.facility-col p,
+h3 {
+  padding: 5px 10px;
+  text-transform: capitalize;
+}
+
+#map {
+  flex: 1;
+  height: 100%;
+  z-index: 0;
+}
+
+/* overlay */
+#overlay {
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(45, 52, 57, 0.5);
+  backdrop-filter: blur(3px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
+}
+
+/* edit form */
+#edit-Screen {
+  display: none;
+  padding: 10px 20px 10px 10px;
+  min-width: 400px;
+  border-radius: 5px;
+  color: var(--text-clor);
+  background-color: rgba(45, 52, 57, 1);
+  border: 1px solid var(--text-clor);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 6;
+}
+
+#edit-Screen > form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+#edit-Screen > form > .input-col {
+  width: 100%;
+  display: flex;
+}
+
+#edit-Screen > form > .input-col input,
+#edit-Screen > form > .input-col select {
+  max-width: 100%;
+  min-width: 60%;
+  padding: 0 5px;
+  border: 0;
+  height: 26px;
+  background-color: var(--bg-light);
+}
+
+#edit-Screen > form > .input-col input:focus,
+#edit-Screen > form > .input-col select:focus {
+  background-color: var(--text-clor);
+  outline: 0;
+}
+
+#edit-Screen > form > .input-col label {
+  min-width: 110px;
+}
+#submit-edit {
+  padding: 3px 15px;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  align-self: flex-end;
+}
+
+.edit-Btn,
+.delete-Btn {
+  padding: 4px 20px;
+  border-radius: 3px;
+  border: 1px solid black;
+  color: var(--text-clor);
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  min-width: 80px;
+}
+.delete-Btn {
+  background-color: var(--fcolor);
+}
+.edit-Btn {
+  background-color: var(--ocolor);
+  bottom: 40px;
+}
+/* Delete PopUp */
+#check-again {
+  background-color: var(--bg-color);
+  width: 400px;
+  color: var(--text-clor);
+  height: 100px;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 6;
+}
+
+#decision {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+#yesSure,
+#noDont {
+  padding: 4px 20px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+#yesSure {
+  background-color: var(--ocolor);
+}
+#noDont {
+  background-color: var(--fcolor);
+}
+
+@media (max-width: 1200px) {
+  .input-col {
+    width: 48%;
+  }
+  .hidden {
+    opacity: 0.5;
+    top: -310px;
+  }
+}
+
+@media (max-width: 768px) {
+  .input-col {
+    width: 100%;
+    flex-direction: column;
+    margin-bottom: 2px;
+  }
+  .hidden {
+    top: -585px;
+  }
+  #showListBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 50px;
+    width: 100%;
+    display: flex;
+    font-size: 2rem;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap-reverse;
+    z-index: 2;
+  }
+
+  #showListBar i {
+    margin-bottom: 4px;
+    padding: 5px;
+  }
+  #side {
+    position: fixed;
+    bottom: 0px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    height: 40%;
+    max-width: 90%;
+    width: 400px;
+    border-radius: 5px 5px 0 0;
+
+    z-index: 3;
+  }
+  .side-hidden {
+    opacity: 0;
+    width: 400px !important;
+    min-width: 250px !important;
+    overflow: hidden !important;
+    height: 0 !important;
+    padding: 10px 20px 10px 5px !important;
+    z-index: -10;
+  }
+}
