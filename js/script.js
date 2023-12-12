@@ -258,7 +258,7 @@ class App {
 
   #renderMarkOnMap(facility) {
     let myIcon = L.icon({
-      iconUrl: `./imgs/${facility.type.toLowerCase()}.svg`,
+      iconUrl: `./imgs/${facility.category ? "other" : facility.type.toLowerCase()}.svg`,
       iconSize: [18, 35],
     });
     L.marker(facility.coord, { icon: myIcon })
@@ -287,7 +287,7 @@ class App {
       facility.id
     }">
           <h3 class="title-facility">
-          <span id="icon"><img src="./imgs/${facility.type}.svg" alt=""></span>
+          <span id="icon"><img src="./imgs/${facility.category ? "other" : facility.type.toLowerCase()}.svg" alt=""></span>
             ${facility.name}
           </h3>
           <p class="description-facility">
